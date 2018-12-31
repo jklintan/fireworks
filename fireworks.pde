@@ -2,7 +2,7 @@ ArrayList<Firework> fireworks;
 PVector gravity = new PVector(0, 0.1);
 
 void setup() {
-  size(500, 500);
+  size(800, 500);
   fireworks = new ArrayList<Firework>();
   colorMode(HSB);
   background(30);

@@ -12,18 +12,18 @@ void draw() {
 	textSize(30);
 	text("Happy New Year", 16, 60);
 	
-  fireworks.add(new Firework()); //Add new fireworks
-  fill(30, 29);
-  noStroke();
-  rect(0,0,width,height); //Color over the old tracks
+  	fireworks.add(new Firework()); //Add new fireworks
+  	fill(30, 29);
+  	noStroke();
+  	rect(0,0,width,height); //Color over the old tracks
 
-  for (int i = fireworks.size()-1; i >= 0; i--) {
-    Firework f = fireworks.get(i);
-    f.run();
-    if (f.done()) {
-      fireworks.remove(i);
-    }
-  }
+  	for (int i = fireworks.size()-1; i >= 0; i--) {
+    		Firework f = fireworks.get(i);
+    		f.run();
+    		if (f.done()) {
+      			fireworks.remove(i);
+    		}
+  	}
 
 }
 

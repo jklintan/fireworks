@@ -1,5 +1,5 @@
 ArrayList<Firework> fireworks;
-PVector gravity = new PVector(0, 0.15);
+PVector gravity = new PVector(0, 0.1);
 
 void setup() {
   size(800, 500, P2D);
@@ -7,8 +7,6 @@ void setup() {
   colorMode(HSB);
   background(30);
 }
-
-
 
 void draw() {
 	textSize(30);
@@ -41,7 +39,7 @@ class Particle {
   Particle(float x, float y, float c) {
     partcolor = c;
     acceleration = new PVector(0, 0);
-    velocity = new PVector(0, random(-12, -5));
+    velocity = new PVector(0, random(-10, -2));
     location =  new PVector(x, y);
     subParticle = true;
     lifespan = 180;
@@ -90,7 +88,8 @@ class Particle {
     } else {
       strokeWeight(2);
     }
-    point(location.x, location.y);
+    ellipse(location.x, location.y, 1, 15);
+		
   }
 
   boolean isDead() {

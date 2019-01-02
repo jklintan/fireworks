@@ -2,202 +2,104 @@ ArrayList<Firework> fireworks;
 PVector gravity = new PVector(0, 0.1);
 
 void setup() {
-
-  size(800, 500, P2D);
-  
-
-  fireworks = new ArrayList<Firework>();
-
-  colorMode(HSB);
-
+  size(800, 500);
+  //fireworks = new ArrayList<Firework>();
+  //colorMode(HSB);
   background(30);
-
 }
-
 
 
 void draw() {
   textSize(30);
   text("Happy New Year", 16, 60);
-
   if (random(1) < 0.04) {
-    fireworks.add(new Firework()); //Add new fireworks
+    //fireworks.add(new Firework()); //Add new fireworks
   }
-    fill(30, 29);
-  
-    noStroke();
-
-    rect(0,0,width,height); //Color over the old tracks
-
-
-
-    for (int i = fireworks.size()-1; i >= 0; i--) {
-
+   
+   fill(30, 29);
+   noStroke();
+   rect(0,0,width,height); //Color over the old tracks
+   for (int i = fireworks.size()-1; i >= 0; i--) {
         Firework f = fireworks.get(i);
-
         f.run();
-
         if (f.done()) {
-
             fireworks.remove(i);
-
         }
-
     }
-
-
-
 }
-
-
 
 class Particle {
-
   PVector location;
-
   PVector velocity;
-
   PVector acceleration;
-
   float lifespan;
-
   boolean subParticle = false;
-
   float partcolor;
-
-
-
+  
   //Constructors
-
   Particle(float x, float y, float c) {
-
     partcolor = c;
-
     acceleration = new PVector(0, 0);
-
     velocity = new PVector(0, random(-10, -2));
-
     location =  new PVector(x, y);
-
     subParticle = true;
-
     lifespan = 180;
-
   }
-
-
 
   Particle(PVector l, float c) {
-
     partcolor = c;
-
     acceleration = new PVector(0, 0);
-
     velocity = PVector.random2D();
-
     velocity.mult(random(4, 8));
-
     location = l;
-
     lifespan = 180;
-
   }
-
-
 
   void applyForce(PVector force) {
-
     acceleration.add(force);
-
   }
-
-
 
   void run() {
-
     update();
-
     display();
-
   }
-
-
 
   boolean explode() {
-
     if (subParticle && velocity.y > 0) {
-
       lifespan = 0;
-
       return true;
-
     }
-
     return false;
-
   }
-
-
 
   void update() {
-
     velocity.add(acceleration);
-
     location.add(velocity);
-
     if (!subParticle) {
-
       lifespan -= 10.0;
-
       velocity.mult(0.95);
-
     }
-
     acceleration.mult(0);
-
   }
-
-
 
   void display() {
-
     stroke(partcolor, 255, 255, lifespan);
-
     if (subParticle) {
-
       strokeWeight(4);
-
     } else {
-
       strokeWeight(2);
-
     }
-
     ellipse(location.x, location.y, 1, 15);
-
-    
-
   }
-
-
-
+  
   boolean isDead() {
-
     if (lifespan < 0.0) {
-
       return true;
-
     } else {
-
       return false;
-
     }
-
   }
-
 }
-
-
 
 class Firework {
 

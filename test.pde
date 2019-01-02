@@ -1,37 +1,22 @@
-
+ArrayList<Firework> fireworks;
+PVector gravity = new PVector(0, 0.1);
 
 class Particle {
-
   PVector location;
-
   PVector velocity;
-
   PVector acceleration;
-
   float lifespan;
-
   boolean subParticle = false;
-
   float partcolor;
 
-
-
   //Constructors
-
   Particle(float x, float y, float c) {
-
     partcolor = c;
-
     acceleration = new PVector(0, 0);
-
     velocity = new PVector(0, random(-10, -2));
-
     location =  new PVector(x, y);
-
     subParticle = true;
-
     lifespan = 180;
-
   }
 
 

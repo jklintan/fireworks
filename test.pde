@@ -4,10 +4,11 @@ PVector gravity = new PVector(0, 0.1);
 void setup() {
 
   size(800, 500, P2D);
+  
 
   fireworks = new ArrayList<Firework>();
 
-  //colorMode(HSB);
+  colorMode(HSB);
 
   background(30);
 
@@ -16,36 +17,33 @@ void setup() {
 
 
 void draw() {
+  textSize(30);
+  text("Happy New Year", 16, 60);
 
-	textSize(30);
+  if (random(1) < 0.04) {
+    fireworks.add(new Firework()); //Add new fireworks
+  }
+    fill(30, 29);
+  
+    noStroke();
 
-	text("Happy New Year", 16, 60);
-
-	
-
-  	fireworks.add(new Firework()); //Add new fireworks
-
-  	fill(30, 29);
-
-  	noStroke();
-
-  	rect(0,0,width,height); //Color over the old tracks
+    rect(0,0,width,height); //Color over the old tracks
 
 
 
-  	for (int i = fireworks.size()-1; i >= 0; i--) {
+    for (int i = fireworks.size()-1; i >= 0; i--) {
 
-    		Firework f = fireworks.get(i);
+        Firework f = fireworks.get(i);
 
-    		f.run();
+        f.run();
 
-    		if (f.done()) {
+        if (f.done()) {
 
-      			fireworks.remove(i);
+            fireworks.remove(i);
 
-    		}
+        }
 
-  	}
+    }
 
 
 
@@ -69,7 +67,7 @@ class Particle {
 
 
 
-	//Constructors
+  //Constructors
 
   Particle(float x, float y, float c) {
 
@@ -149,9 +147,9 @@ class Particle {
 
     if (!subParticle) {
 
-      lifespan -= 5.0;
+      lifespan -= 10.0;
 
-      velocity.mult(0.9);
+      velocity.mult(0.95);
 
     }
 
@@ -177,7 +175,7 @@ class Particle {
 
     ellipse(location.x, location.y, 1, 15);
 
-		
+    
 
   }
 
@@ -209,9 +207,9 @@ class Firework {
 
   float partcolor;
 
-	
+  
 
-	//Constructor
+  //Constructor
 
   Firework() {
 
